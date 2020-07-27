@@ -7,13 +7,11 @@ export const initState = {
 };
 
 export const listNew = {
-  id: `LIST${new Date().toISOString()}`,
   title: '',
   tasks: []
 };
 
 export const taskNew = {
-  id: `TASK${new Date().toISOString()}`,
   description: '',
   done: false
 };
