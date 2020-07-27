@@ -12,7 +12,7 @@ export default () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    axios.get(`http://localhost:9000/${'lcasviana@gmail.com'}`)
+    axios.get(`https://todo-lists-api.herokuapp.com/api/users/${'lcasviana@gmail.com'}`)
       .then(res => dispatch({ type: types.init, user: res.data }))
       .catch(err => console.error(err));
   }, [dispatch]);

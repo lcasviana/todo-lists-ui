@@ -13,7 +13,7 @@ export default () => {
 
   const save = () => {
     dispatch({ type: types.loaderShow });
-    axios.patch(`http://localhost:9000/${'lcasviana@gmail.com'}`, { lists })
+    axios.patch(`https://todo-lists-api.herokuapp.com/api/users/${'lcasviana@gmail.com'}`, { lists })
       .then(res => dispatch({ type: types.save, user: res.data }))
       .catch(err => console.error(err));
   };
