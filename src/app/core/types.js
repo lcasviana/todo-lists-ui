@@ -14,6 +14,7 @@ export default {
   password: 'password',
   name: 'name',
 
+  listDisplay: 'listDisplay',
   listNew: 'listNew',
   listDel: 'listDel',
   listTitle: 'listTitle',

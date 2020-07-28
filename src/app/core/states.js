@@ -5,6 +5,7 @@ export const initState = {
   name: '',
   lists: [],
   loading: false,
+  display: -1,
   login: localStorage.getItem('email') && localStorage.getItem('password'),
 };
 

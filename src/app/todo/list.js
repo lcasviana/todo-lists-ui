@@ -15,6 +15,7 @@ export default ({ list, title, tasks }) => {
 
   const listDel = () => {
     dispatch({ type: types.listDel, list });
+    dispatch({ type: types.listDisplay, display: -1 });
   };
 
   const taskNew = () => {

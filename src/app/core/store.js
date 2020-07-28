@@ -36,6 +36,8 @@ export default createStore((state = initState, action) => {
     case types.name:
       return { ...state, name: action.name };
 
+    case types.listDisplay:
+      return { ...state, display: action.display };
     case types.listNew:
       return { ...state, lists: [...state.lists, listNew] };
     case types.listDel:
