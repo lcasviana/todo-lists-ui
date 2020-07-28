@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Dialog, useMediaQuery, useTheme } from '@material-ui/core';
 
 import Nav from '../shared/nav';
-import Loader from '../shared/loader';
 import TodoList from './list';
 import TodoResume from './resume';
 import { getUserData } from '../core/actions';
@@ -17,7 +16,7 @@ export default ({ email, name }) => {
     getUserData(dispatch, { email });
   }, [dispatch, email]);
 
-  const { display, loading, lists } = useSelector(s => s);
+  const { display, lists } = useSelector(s => s);
 
   const listDisplay = (display) => {
     dispatch({ type: types.listDisplay, display });
@@ -25,7 +24,6 @@ export default ({ email, name }) => {
 
   return (
     <>
-      <Loader loading={loading} />
       <Nav email={email} name={name} lists={lists} />
       <div className='pa4' style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {!!lists &&

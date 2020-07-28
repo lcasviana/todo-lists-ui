@@ -13,7 +13,7 @@ export default createStore((state = initState, action) => {
     case types.logout:
       localStorage.removeItem('email');
       localStorage.removeItem('password');
-      return { ...state, email: '', password: '', name: '', authenticated: false };
+      return { ...state, email: '', password: '', name: '', lists: [], authenticated: false };
 
     case types.init:
       return { ...state, ...action.data };
@@ -24,6 +24,11 @@ export default createStore((state = initState, action) => {
       return { ...state, loading: true };
     case types.loaderHide:
       return { ...state, loading: false };
+
+    case types.alertShow:
+      return { ...state, alert: { open: true, message: action.alert } };
+    case types.alertHide:
+      return { ...state, alert: { open: false, message: '' } };
 
     case types.signIn:
       return { ...state, login: true };

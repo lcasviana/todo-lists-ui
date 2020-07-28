@@ -7,6 +7,7 @@ export const initState = {
   loading: false,
   display: -1,
   login: localStorage.getItem('email') && localStorage.getItem('password'),
+  alert: { open: false, message: '' }
 };
 
 export const listNew = {

@@ -8,6 +8,9 @@ export default {
   loaderShow: 'loaderShow',
   loaderHide: 'loaderHide',
 
+  alertShow: 'alertShow',
+  alertHide: 'alertHide',
+
   signIn: 'signIn',
   signUp: 'signUp',
   email: 'email',

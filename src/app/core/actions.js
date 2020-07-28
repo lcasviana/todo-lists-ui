@@ -12,6 +12,7 @@ export const signIn = (dispatch, { email, password }) => {
     .catch(_ => {
       dispatch({ type: types.logout });
       dispatch({ type: types.loaderHide });
+      dispatch({ type: types.alertShow, alert: 'Erro ao entrar.' });
     });
 };
 
@@ -25,6 +26,7 @@ export const signUp = (dispatch, { email, password, name }) => {
     .catch(_ => {
       dispatch({ type: types.logout });
       dispatch({ type: types.loaderHide });
+      dispatch({ type: types.alertShow, alert: 'Erro ao cadastrar.' });
     });
 };
 
@@ -43,6 +45,7 @@ export const getUserData = (dispatch, { email }) => {
       .catch(_ => {
         dispatch({ type: types.logout });
         dispatch({ type: types.loaderHide });
+        dispatch({ type: types.alertShow, alert: 'Erro ao buscar dados do usuário.' });
       }));
 };
 
@@ -56,5 +59,6 @@ export const saveUserData = (dispatch, { email, lists }) => {
     .catch(_ => {
       dispatch({ type: types.logout });
       dispatch({ type: types.loaderHide });
+      dispatch({ type: types.alertShow, alert: 'Erro ao salvar dados do usuário.' });
     });
 };
