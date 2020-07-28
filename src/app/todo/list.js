@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Card, List, ListSubheader, TextField } from '@material-ui/core';
-import { Add, Delete } from '@material-ui/icons';
+import { Add, Delete, Close } from '@material-ui/icons';
 
 import types from '../core/types';
 import TodoTask from './task';
@@ -22,8 +22,12 @@ export default ({ list, title, tasks }) => {
     dispatch({ type: types.taskNew, list });
   };
 
+  const listDisplay = (display) => {
+    dispatch({ type: types.listDisplay, display });
+  };
+
   return (
-    <Card className='w-100'>
+    <Card className='w-100' style={{ overflowY: 'auto' }}>
       <List style={{ background: '#d2d2d2', padding: 0 }}>
         <ListSubheader className='flex items-center pb2 pt2'>
           <TextField
@@ -35,6 +39,7 @@ export default ({ list, title, tasks }) => {
           />
           <Button onClick={() => taskNew()}><Add /> Tarefa</Button>
           <Button onClick={() => listDel()}><Delete /> Lista</Button>
+          <Button onClick={() => listDisplay(-1)}><Close /> Fechar</Button>
         </ListSubheader>
         {tasks && tasks.map((task, index) =>
           <TodoTask

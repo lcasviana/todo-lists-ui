@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Card, List, ListSubheader, Divider, ListItem, ListItemText } from '@material-ui/core';
+import { Card, List, ListSubheader, Divider, ListItem, ListItemText, Checkbox } from '@material-ui/core';
 
 import types from '../core/types';
 
@@ -18,11 +18,16 @@ export default ({ list, title, tasks }) => {
           {!!title ? <span>{title}</span> : <span className='i'>Sem título...</span>}
         </ListSubheader>
         <Divider />
-        {tasks.map((task, index) => !!task.description
-          ? <ListItem style={{ paddingBottom: 0, paddingTop: 0, textDecoration: task.done ? 'line-through' : 'link' }} key={index}>
-            <ListItemText>{task.description}</ListItemText></ListItem>
-          : <ListItem style={{ paddingBottom: 0, paddingTop: 0, textDecoration: task.done ? 'line-through' : 'link' }} key={index}>
-            <ListItemText className='i'>...</ListItemText></ListItem>)}
+        {tasks.map((task, index) =>
+          <>
+            <ListItem style={{ paddingBottom: 0, paddingTop: 0, textDecoration: 'link' }} key={index}>
+              <ListItemText>
+                <Checkbox style={{ padding: '0.25rem' }} checked={task.done} color='default' disabled={true} />
+                {task.description}
+              </ListItemText>
+            </ListItem>
+          </>
+        )}
       </List>
     </Card>
   );
