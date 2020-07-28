@@ -4,8 +4,7 @@ import { Card, List, ListSubheader, Divider, ListItem, ListItemText } from '@mat
 
 import types from '../core/types';
 
-export default (props) => {
-  const { list, title, tasks } = props;
+export default ({ list, title, tasks }) => {
   const dispatch = useDispatch();
 
   const listDisplay = (display) => {

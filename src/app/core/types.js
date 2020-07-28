@@ -1,10 +1,19 @@
 export default {
+  login: 'login',
+  logout: 'logout',
+
   init: 'init',
   save: 'save',
 
   loaderShow: 'loaderShow',
+  loaderHide: 'loaderHide',
 
-  listDisplay: 'listDisplay',
+  signIn: 'signIn',
+  signUp: 'signUp',
+  email: 'email',
+  password: 'password',
+  name: 'name',
+
   listNew: 'listNew',
   listDel: 'listDel',
   listTitle: 'listTitle',

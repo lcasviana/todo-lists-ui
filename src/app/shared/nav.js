@@ -1,25 +1,17 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { Add, Save, ArrowBack } from '@material-ui/icons';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import axios from 'axios';
 
 import types from '../core/types';
+import { saveUserData } from '../core/actions';
 
-export default () => {
-  const { display, lists, name } = useSelector(s => s);
+export default ({ email, name, lists }) => {
   const dispatch = useDispatch();
 
-  const save = () => {
-    dispatch({ type: types.loaderShow });
-    axios.patch(`https://todo-lists-api.herokuapp.com/api/users/${'lcasviana@gmail.com'}`, { lists })
-      .then(res => dispatch({ type: types.save, user: res.data }))
-      .catch(err => console.error(err));
-  };
-
-  const listDisplay = (display) => {
-    dispatch({ type: types.listDisplay, display });
+  const logout = () => {
+    dispatch({ type: types.logout });
   };
 
   const listNew = () => {
@@ -31,9 +23,9 @@ export default () => {
       <Toolbar style={{ maxWidth: '1200px', margin: '0 auto' }} className='flex items-center w-100'>
         <Typography variant='h6' style={{ flexGrow: 1 }}> Lista de Tarefas </Typography>
         <Typography variant='h6' style={{ flexGrow: 1 }}> {name} </Typography>
-        {display === -1 && <Button variant='contained' color='default' onClick={() => listNew()}><Add /> Lista</Button>}
-        {display !== -1 && <Button variant='contained' color='default' onClick={() => listDisplay(-1)}><ArrowBack /> Voltar</Button>}
-        <Button variant='contained' color='default' onClick={() => save()}><Save /> Salvar</Button>
+        <Button variant='contained' color='default' onClick={() => logout()}><ArrowBack /> Logout</Button>
+        <Button variant='contained' color='default' onClick={() => listNew()}><Add /> Lista</Button>
+        <Button variant='contained' color='default' onClick={() => saveUserData(dispatch, { email, lists })}><Save /> Salvar</Button>
       </Toolbar>
     </AppBar>
   );

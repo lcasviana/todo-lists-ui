@@ -1,17 +1,19 @@
 export const initState = {
-  email: '',
+  authenticated: false,
+  email: localStorage.getItem('email') || '',
+  password: localStorage.getItem('password') || '',
   name: '',
   lists: [],
-  loading: true,
-  display: -1
+  loading: false,
+  login: localStorage.getItem('email') && localStorage.getItem('password'),
 };
 
 export const listNew = {
   title: '',
-  tasks: []
+  tasks: [],
 };
 
 export const taskNew = {
   description: '',
-  done: false
+  done: false,
 };

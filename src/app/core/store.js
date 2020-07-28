@@ -3,22 +3,43 @@ import { createStore } from 'redux';
 import { listNew, taskNew, initState } from './states';
 import types from './types';
 
-const todo = (state = initState, action) => {
+export default createStore((state = initState, action) => {
   switch (action.type) {
+    case types.login:
+      const email = action.email, password = action.password;
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+      return { ...state, email: action.email, password: action.password, name: action.name, authenticated: true };
+    case types.logout:
+      localStorage.removeItem('email');
+      localStorage.removeItem('password');
+      return { ...state, email: '', password: '', name: '', authenticated: false };
+
     case types.init:
-      return { ...state, ...action.user, loading: false };
+      return { ...state, ...action.data };
     case types.save:
-      return { ...state, ...action.user, loading: false };
+      return { ...state, ...action.data };
 
     case types.loaderShow:
       return { ...state, loading: true };
+    case types.loaderHide:
+      return { ...state, loading: false };
 
-    case types.listDisplay:
-      return { ...state, display: action.display };
+    case types.signIn:
+      return { ...state, login: true };
+    case types.signUp:
+      return { ...state, login: false };
+    case types.email:
+      return { ...state, email: action.email };
+    case types.password:
+      return { ...state, password: action.password };
+    case types.name:
+      return { ...state, name: action.name };
+
     case types.listNew:
       return { ...state, lists: [...state.lists, listNew] };
     case types.listDel:
-      return { ...state, lists: state.lists.filter((_, li) => li !== action.list), display: -1 };
+      return { ...state, lists: state.lists.filter((_, li) => li !== action.list) };
     case types.listTitle:
       return { ...state, lists: state.lists.map((list, li) => li === action.list ? { ...list, title: action.title } : list) };
 
@@ -34,6 +55,4 @@ const todo = (state = initState, action) => {
     default:
       return { ...state };
   }
-};
-
-export default createStore(todo);
+});

@@ -5,8 +5,7 @@ import { Delete } from '@material-ui/icons';
 
 import types from '../core/types';
 
-export default (props) => {
-  const { list, task, done, description } = props;
+export default ({ list, task, done, description }) => {
   const dispatch = useDispatch();
 
   const taskDel = () => {

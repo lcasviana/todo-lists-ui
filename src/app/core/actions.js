@@ -1,0 +1,60 @@
+import axios from 'axios';
+
+import types from './types';
+
+export const signIn = (dispatch, { email, password }) => {
+  dispatch({ type: types.loaderShow });
+  axios.post(`${process.env.REACT_APP_API}/api/accounts/sign-in`, { email, password })
+    .then(({ data }) => {
+      dispatch({ type: types.login, ...data, password });
+      dispatch({ type: types.loaderHide });
+    })
+    .catch(_ => {
+      dispatch({ type: types.logout });
+      dispatch({ type: types.loaderHide });
+    });
+};
+
+export const signUp = (dispatch, { email, password, name }) => {
+  dispatch({ type: types.loaderShow });
+  axios.post(`${process.env.REACT_APP_API}/api/accounts/sign-up`, { email, password, name })
+    .then(({ data }) => {
+      dispatch({ type: types.login, ...data, password });
+      dispatch({ type: types.loaderHide });
+    })
+    .catch(_ => {
+      dispatch({ type: types.logout });
+      dispatch({ type: types.loaderHide });
+    });
+};
+
+export const getUserData = (dispatch, { email }) => {
+  dispatch({ type: types.loaderShow });
+  axios.get(`${process.env.REACT_APP_API}/api/users/${email}`)
+    .then(({ data }) => {
+      dispatch({ type: types.init, data })
+      dispatch({ type: types.loaderHide });;
+    })
+    .catch(_ => axios.post(`${process.env.REACT_APP_API}/api/users/${email}`)
+      .then(({ data }) => {
+        dispatch({ type: types.init, data });
+        dispatch({ type: types.loaderHide });
+      })
+      .catch(_ => {
+        dispatch({ type: types.logout });
+        dispatch({ type: types.loaderHide });
+      }));
+};
+
+export const saveUserData = (dispatch, { email, lists }) => {
+  dispatch({ type: types.loaderShow });
+  axios.patch(`${process.env.REACT_APP_API}/api/users/${email}`, { lists })
+    .then(({ data }) => {
+      dispatch({ type: types.save, data });
+      dispatch({ type: types.loaderHide });
+    })
+    .catch(_ => {
+      dispatch({ type: types.logout });
+      dispatch({ type: types.loaderHide });
+    });
+};

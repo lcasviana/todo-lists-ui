@@ -6,8 +6,7 @@ import { Add, Delete } from '@material-ui/icons';
 import types from '../core/types';
 import TodoTask from './task';
 
-export default (props) => {
-  const { list, title, tasks } = props;
+export default ({ list, title, tasks }) => {
   const dispatch = useDispatch();
 
   const listTitle = (title) => {
